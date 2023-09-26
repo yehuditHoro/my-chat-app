@@ -1,0 +1,149 @@
+
+
+body {
+    display: grid;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    padding: 0;
+    justify-items: center;
+    font-family: cursive;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Center the content */
+}
+
+#enterbtn,#clearbtn{
+    width: 268px;
+    margin-top: 17px;
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0cf;
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: darken(#34dbac, 15%);
+      transition: all .3s;
+      border-radius: 10rem;
+      z-index: -1;
+    }
+    &:hover {
+      color: #fff;
+      &:before {
+        width: 100%;
+      }
+    }
+}
+
+#rname{
+    width: 250px !important;
+}
+
+.chatr{
+    width: 208px;
+    font-size: 21px;
+}
+
+#enterroom{
+    margin-left: 40%;
+}
+
+#lcontainer{
+display: grid;
+grid-template-columns: repeat(2,1fr);
+margin-left: -150px;
+margin-top: 85px;
+}
+
+#roomname{
+    margin-right: -120px;
+}
+
+h1 {
+    color: #050505;
+    margin-top: 40px;
+    margin-left: -50px;
+}
+
+h2 {
+    color: #666;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+
+h3 {
+    color: #050505;
+    margin-top: 30px;
+}
+
+form {
+    text-align: center;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input[type="text"],
+select {
+    width: 267px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #34dbac;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #34dbac;
+    text-decoration: none;
+    margin-right: 60px;
+    font-size: 27px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+

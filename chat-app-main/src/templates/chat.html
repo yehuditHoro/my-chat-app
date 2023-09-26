@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chat.css') }}">
+
+</head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      function room() {
+        var room = window.location.href.substring(window.location.href.lastIndexOf("/")+1);
+        if (room=="") room = "general";
+        return "/api/chat/"+room;
+      }
+      function clear_room() {
+        var room = window.location.href.substring(window.location.href.lastIndexOf("/")+1);
+        if (room=="") room = "general";
+        return "/api/chat/"+room+"/clear";
+      }
+      function updateChat() {
+        $.get(room(), function(data) {
+          $("#chatbox").text(data);
+          window.setTimeout(updateChat, 1500);
+        })
+      }
+  
+      function sendmessage() {
+        $.post(room(), $("#inform").serialize() );
+      }
+      function clearRoom() {
+        $.post(clear_room(), $("#inform").serialize() );
+      }
+      $(document).ready(function() {
+        $("#chatbox").text("Loading chat...");
+        $("#sendBtn").click(sendmessage)
+        $("#clearbtn").click(clearRoom)
+        window.setTimeout(updateChat, 1500);
+      });
+      </script>
+    <body>
+      <div><h1 id="room_name">Chat Room: {{ room }}</h1></div>
+       <div id="chatb" id="Loading"><pre id="chatbox">Loading...</pre></div>
+        <form id="inform" action="/api/chat" method="POST"> 
+       Message:<input id="mess" name="msg" type=text>
+      <input id="sendBtn" type="button" value="✉">
+      </form>
+      <button id ="clearbtn" >clear</button>
+      <a href="/lobby">Back to lobby</a>
+      <a href="/logout">logout</a>
+
+    </body>
+  </html>
