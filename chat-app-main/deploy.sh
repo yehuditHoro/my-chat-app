@@ -1,6 +1,6 @@
 #!/bin/bash
 version=$1
-# git_version="v${version}"
+ git_version="v${version}"
 img_name_and_tag="chat_img:${version}"
 IMAGE_EXISTS=$(docker images | grep $img_name_and_tag)
 
@@ -23,12 +23,12 @@ else
      docker build -t ${img_name_and_tag} .
 fi
 
-# if [ -n "$2" ]; then
-#    commit_hash=$2
-#    docker volume create chat-data
-#    git tag v${version} ${commit_hash} 
-#    git push origin v${version}
-# fi
+if [ -n "$2" ]; then
+   commit_hash=$2
+   docker volume create chat-data
+   git tag v${version} ${commit_hash} 
+   git push origin v${version}
+fi
 
 echo "Do you want to push to GCR? (Y/N)"
 read -r push_to_gcp
